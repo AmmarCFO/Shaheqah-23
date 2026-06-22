@@ -27,8 +27,7 @@ const TEXTS = {
     base: 'Base (Normal)',
     optimistic: 'Optimistic (+5%)',
     grandTotal: 'GRAND TOTAL (Unique Inventory: 64 Units)',
-    ltrOff: 'LTR Rate (Off-Season, 7 mo.)',
-    ltrPeak: 'LTR Rate (Peak Season, 5 mo.)',
+    ltrAnnual: 'LTR Rate (Flat, Year-Round)',
     strOff: 'STR Rate (Off-Season, 7 mo.)',
     strPeak: 'STR Rate (Peak Season, 5 mo.)',
     footnote: 'Calculations assume 30.4 days per month average; actual short-term rental pricing maps monthly contract overrides.'
@@ -54,8 +53,7 @@ const TEXTS = {
     base: 'أساسي (طبيعي)',
     optimistic: 'متفائل (+٥٪)',
     grandTotal: 'إجمالي المحفظة (العدد الفعلي: ٦٤ وحدة سكنية)',
-    ltrOff: 'طويل الأجل (موسم عادي، ٧ أشهر)',
-    ltrPeak: 'طويل الأجل (موسم ذروة، ٥ أشهر)',
+    ltrAnnual: 'طويل الأجل (عقد سنوي ثابت)',
     strOff: 'قصير الأجل (موسم عادي، ٧ أشهر)',
     strPeak: 'قصير الأجل (موسم ذروة، ٥ أشهر)',
     footnote: 'تفترض الحسابات متوسط ٣٠.٤ يومًا في الشهر؛ تسعير الإيجار قصير الأجل يتطابق مع شروط العقود الشهرية ببرنامج مَثوى.'
@@ -65,8 +63,7 @@ const TEXTS = {
 const DETAILED_ROWS = [
   { segmentKey: '2br_str_peak', segmentEn: '2BR STR (Peak Season)', segmentAr: 'غرفتين وصالة قصير الأجل (موسم الذروة)', units: 41, peak: 5, off: 0, pessimistic: 5082975, base: 5350500, optimistic: 5618025 },
   { segmentKey: '2br_str_off', segmentEn: '2BR STR (Off Season)', segmentAr: 'غرفتين وصالة قصير الأجل (موسم عادي)', units: 41, peak: 0, off: 7, pessimistic: 4580520, base: 4821600, optimistic: 5062680 },
-  { segmentKey: '2br_ltr_peak', segmentEn: '2BR LTR (Peak Season)', segmentAr: 'غرفتين وصالة طويل الأجل (موسم الذروة)', units: 23, peak: 5, off: 0, pessimistic: 823417, base: 866755, optimistic: 910093 },
-  { segmentKey: '2br_ltr_off', segmentEn: '2BR LTR (Off Season)', segmentAr: 'غرفتين وصالة طويل الأجل (موسم عادي)', units: 23, peak: 0, off: 7, pessimistic: 1152784, base: 1213457, optimistic: 1274130 }
+  { segmentKey: '2br_ltr_annual', segmentEn: '2BR LTR (Annual Contract)', segmentAr: 'غرفتين وصالة طويل الأجل (عقود سنوية)', units: 23, peak: 5, off: 7, pessimistic: 1976201, base: 2080212, optimistic: 2184223 }
 ];
 
 const DetailedAssumptions: React.FC<DetailedAssumptionsProps> = ({ lang }) => {
@@ -91,7 +88,7 @@ const DetailedAssumptions: React.FC<DetailedAssumptionsProps> = ({ lang }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Season Split Card */}
-        <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm flex flex-col justify-between">
+        <div className="lg:col-span-12 xl:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm flex flex-col justify-between">
           <div>
             <h4 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
@@ -130,7 +127,7 @@ const DetailedAssumptions: React.FC<DetailedAssumptionsProps> = ({ lang }) => {
         </div>
 
         {/* Base Rates Card */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm">
+        <div className="lg:col-span-12 xl:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm">
           <h4 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             {t.ratesTitle}
@@ -146,11 +143,7 @@ const DetailedAssumptions: React.FC<DetailedAssumptionsProps> = ({ lang }) => {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 <tr className="hover:bg-gray-50/50">
-                  <td className="py-3 font-semibold text-gray-700">{t.ltrOff}</td>
-                  <td className="py-3 text-center font-bold text-gray-900 tabular-nums">7,537 <span className="text-[10px] text-gray-400 font-normal">/mo</span></td>
-                </tr>
-                <tr className="hover:bg-gray-50/50">
-                  <td className="py-3 font-semibold text-gray-700">{t.ltrPeak}</td>
+                  <td className="py-3 font-semibold text-gray-700">{t.ltrAnnual}</td>
                   <td className="py-3 text-center font-bold text-gray-900 tabular-nums">7,537 <span className="text-[10px] text-gray-400 font-normal">/mo</span></td>
                 </tr>
                 <tr className="hover:bg-gray-50/50">
